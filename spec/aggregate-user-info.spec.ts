@@ -46,7 +46,7 @@ describe('github-graphql', () => {
             },
             {
                 "language": "JavaScript",
-                "color": "#f1e05a",
+                "color": "#00b894",
                 "contributions": 7
             },
             {

@@ -3,6 +3,10 @@ import * as type from './type';
 
 const OTHER_COLOR = '#444444';
 
+const LANGUAGE_COLOR_OVERRIDES: Record<string, string> = {
+    JavaScript: '#00b894',
+};
+
 const toNumberContributionLevel = (level: type.ContributionLevel): number => {
     switch (level) {
         case 'NONE':
@@ -54,7 +58,10 @@ export const aggregateUserInfo = (
         .filter((repo) => repo.repository.primaryLanguage)
         .forEach((repo) => {
             const language = repo.repository.primaryLanguage?.name || '';
-            const color = repo.repository.primaryLanguage?.color || OTHER_COLOR;
+            const color =
+                LANGUAGE_COLOR_OVERRIDES[language] ??
+                repo.repository.primaryLanguage?.color ??
+                OTHER_COLOR;
             const contributions = repo.contributions.totalCount;
 
             const info = contributesLanguage[language];
